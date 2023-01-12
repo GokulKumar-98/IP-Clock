@@ -1,7 +1,7 @@
 import React from 'react';
 
-const RevealButton = () => {
-  return <div>RevealButton</div>;
+const RevealButton = ({ click }) => {
+  return <div onClick={click}>RevealButton</div>;
 };
 
 export default RevealButton;

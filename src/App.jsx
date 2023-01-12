@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import Quotes from './components/Quotes';
 import TimeBar from './components/TimeBar';
 import mng from './images/mng.jpg';
+
 import eve from './images/evening.jpg';
+
 import { useTransition, animated, config, useSpring } from '@react-spring/web';
+import Details from './components/Details';
 
 const slides = [
   { id: 0, url: mng },
@@ -12,58 +15,90 @@ const slides = [
 ];
 
 function App() {
-  const [bgImage, setBgImage] = useState(mng);
-
+  const [change, setChange] = useState(false);
+  const [bgImage, setBgImage] = useState(
+    new Date().getHours() >= 6 && new Date().getHours() <= 17 ? mng : eve
+  );
+  const [data, setData] = useState({});
   const [props, set] = useSpring(() => ({
-    opacity: 0,
+    opacity: 1,
     config: { duration: 1000 },
-    onRest: () => {
-      if (bgImage === mng) {
-        setBgImage(eve);
-      } else {
-        setBgImage(mng);
-      }
-    },
   }));
+
+  const handClick = () => {
+    //console.log(change);
+    setChange((prev) => !prev);
+  };
+  const getip = useCallback(async () => {
+    const response = await fetch(
+      'https://api.ipdata.co/?api-key=aaafa88d7d575fee3eb025eac686dc90c1b532edc0e24fadc9ac3619'
+    );
+    const dt = await response.json();
+    setData(dt);
+    // console.log(dt);
+  }, []);
+
   useEffect(() => {
-    set({ opacity: 1 });
+    getip();
+  }, [getip]);
+
+  // const getip = async () => {
+  //   const response = await fetch(
+  //     'https://api.ipdata.co/?api-key=aaafa88d7d575fee3eb025eac686dc90c1b532edc0e24fadc9ac3619'
+  //   );
+  //   const dt = await response.json();
+  //   setData(dt);
+  //   console.log(dt);
+  // };
+  // useEffect(() => {
+  //   getip();
+  // }, []);
+  useEffect(() => {
+    // set({ opacity: 1 });
+    const interval = setInterval(() => {
+      const currentHour = new Date().getHours();
+      if (currentHour >= 6 && currentHour < 17) {
+        setTimeout(() => {
+          setBgImage(mng);
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          setBgImage(eve);
+        }, 1000);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
   }, [bgImage]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     const currentHour = new Date().getHours();
-  //     if (currentHour >= 0 && currentHour < 17) {
-  //       setIsChanging(true);
-  //       setTimeout(() => {
-  //         setIsChanging(false);
-  //         setBgImage(mng);
-  //       }, 1000);
-  //     } else {
-  //       setIsChanging(true);
-  //       setTimeout(() => {
-  //         setIsChanging(false);
-  //         setBgImage(eve);
-  //       }, 1000);
-  //     }
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, [bgImage]);
-
   return (
-    <animated.div
-      className="main"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-        opacity: props.opacity,
-        backgroundSize: 'cover',
-        transition: 'background-image 1s ease-in-out',
-      }}
-    >
-      <div className="App flex flex-col transition-all items-start justify-between  xl:ml-32 lg:ml-24 md:ml-16 sm:ml-5">
-        <Quotes></Quotes>
-        <TimeBar></TimeBar>
-      </div>
-    </animated.div>
+    <>
+      <animated.div
+        className="main"
+        style={{
+          backgroundImage: `url(${bgImage})`,
+
+          backgroundSize: 'cover',
+          transition: 'background-image 1s ease-in-out',
+        }}
+      >
+        <div className="App flex flex-col justify-between transition-all items-start xl:ml-32 lg:ml-24 md:ml-16 sm:ml-5">
+          <Quotes change={change}></Quotes>
+
+          <TimeBar click={handClick} change={change}></TimeBar>
+        </div>
+        <div
+          style={{
+            transition: 'all 1s ease',
+            transform: `translateY(calc(${
+              change ? '50vh' : '150vh'
+            } - (100vh)))`,
+          }}
+          className=" h-[50vh] w-[100vw] px-[20px] "
+        >
+          <Details data={data}></Details>
+        </div>
+      </animated.div>
+    </>
   );
 }
 

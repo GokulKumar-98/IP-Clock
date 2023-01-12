@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Quotes = () => {
+const Quotes = ({ change }) => {
   const [state, setstate] = useState('');
 
   const getQuote = async () => {
@@ -19,7 +19,8 @@ const Quotes = () => {
       key={state.id}
       style={{
         transition: 'transform 0.8s ease-out',
-        transform: state ? 'translateY(0%)' : 'translateY(-100%)',
+        transform:
+          state && change == false ? 'translateY(00%)' : 'translateY(-110%)',
       }}
       className="flex flex-row gap-3 items-center bg-[rgba(0,0,0,0.25)] backdrop-blur-[2px] p-5 border-[1px solid rgba(0,0,0,0.175)] rounded-[7px] max-w-2xl"
     >

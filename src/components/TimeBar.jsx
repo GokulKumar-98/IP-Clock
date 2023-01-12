@@ -2,24 +2,29 @@ import React, { useEffect, useState } from 'react';
 import RevealButton from './RevealButton';
 import Time from './Time';
 
-const TimeBar = () => {
+const TimeBar = ({ change, click }) => {
   const [data, setData] = useState('');
 
-  const getip = async () => {
-    const response = await fetch(
-      'https://api.ipdata.co/?api-key=aaafa88d7d575fee3eb025eac686dc90c1b532edc0e24fadc9ac3619'
-    );
-    const dt = await response.json();
-    setData(dt);
-    console.log(dt);
-  };
+  // const getip = async () => {
+  //   const response = await fetch(
+  //     'https://api.ipdata.co/?api-key=aaafa88d7d575fee3eb025eac686dc90c1b532edc0e24fadc9ac3619'
+  //   );
+  //   const dt = await response.json();
+  //   setData(dt);
+  //   console.log(dt);
+  // };
   useEffect(() => {
     //getip();
   }, []);
   return (
-    <div className="flex flex-row w-full items-end justify-between msm:flex-col msm:items-start transition-all transform ">
+    <div
+      style={{ transition: 'transform 0.8s ease-out' }}
+      className={`${
+        change ? 'timebar' : ''
+      } flex flex-row w-full h-[50%] items-end justify-between msm:flex-col msm:items-start msm:justify-end msm:gap-[10px] transition-all`}
+    >
       <Time data={data}></Time>
-      <RevealButton></RevealButton>
+      <RevealButton click={click}></RevealButton>
     </div>
   );
 };
