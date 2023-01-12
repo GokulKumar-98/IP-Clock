@@ -5,11 +5,11 @@ import Loader from './components/Loader';
 
 function App() {
   const [isloading, setisLoading] = useState(true);
-  console.log(isloading);
+
   useEffect(() => {
     setTimeout(() => {
       setisLoading(!isloading);
-    }, 600);
+    }, 1000);
   }, []);
   return (
     <>

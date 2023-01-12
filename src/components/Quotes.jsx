@@ -18,7 +18,7 @@ const Quotes = ({ change }) => {
     <div
       key={state.id}
       style={{
-        transition: 'transform 0.8s ease-out',
+        transition: 'transform 1.5s ease-out',
         transform:
           state && change == false ? 'translateY(00%)' : 'translateY(-110%)',
       }}

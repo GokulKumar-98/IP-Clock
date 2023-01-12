@@ -5,7 +5,7 @@ const Loader = ({ isloading }) => {
   return (
     <div
       style={{
-        transition: 'all 1s ease',
+        transition: 'all 1.5s ease',
         transform: `${isloading ? 'translateY(-100%)' : 'translateY(00%)'}`,
       }}
       className="loader bg-[#0e0e0e] flex w-[100vw] h-[100vh] items-center justify-center"
