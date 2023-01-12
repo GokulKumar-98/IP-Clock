@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import RevealButton from './RevealButton';
 import Time from './Time';
 
-const TimeBar = ({ change, click }) => {
-  const [data, setData] = useState('');
+const TimeBar = ({ change, click, data }) => {
+  // const [data, setData] = useState('');
 
   // const getip = async () => {
   //   const response = await fetch(
@@ -24,7 +24,7 @@ const TimeBar = ({ change, click }) => {
       } flex flex-row w-full h-[50%] items-end justify-between msm:flex-col msm:items-start msm:justify-end msm:gap-[10px] transition-all`}
     >
       <Time data={data}></Time>
-      <RevealButton click={click}></RevealButton>
+      <RevealButton click={click} change={change}></RevealButton>
     </div>
   );
 };

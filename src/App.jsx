@@ -84,7 +84,7 @@ function App() {
         <div className="App flex flex-col justify-between transition-all items-start xl:ml-32 lg:ml-24 md:ml-16 sm:ml-5">
           <Quotes change={change}></Quotes>
 
-          <TimeBar click={handClick} change={change}></TimeBar>
+          <TimeBar data={data} click={handClick} change={change}></TimeBar>
         </div>
         <div
           style={{
@@ -93,7 +93,7 @@ function App() {
               change ? '50vh' : '150vh'
             } - (100vh)))`,
           }}
-          className=" h-[50vh] w-[100vw] px-[20px] "
+          className=" h-[50vh]  px-[20px] "
         >
           <Details data={data}></Details>
         </div>

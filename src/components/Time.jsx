@@ -35,22 +35,20 @@ const Time = ({ data }) => {
           {time.slice(-2).toUpperCase()}
         </span>{' '}
       </div>
-      {data ? (
-        <div className="flex text-[20px] xl:text-[32px] drop-shadow-lg tracking-[2px] text-left mmd:text-[16px] msm:text-[12px]">
-          {`In ${city}, ${country_name}`.toUpperCase()}
-        </div>
-      ) : (
-        <div className="flex text-[20px] xl:text-[32px] drop-shadow-lg tracking-[2px] text-left mmd:text-[16px] msm:text-[14px] ">
-          IN CHENNAI, INDIA
-        </div>
-      )}
+      {
+        data ? (
+          <div className="flex text-[20px] xl:text-[32px] drop-shadow-lg tracking-[2px] text-left mmd:text-[16px] msm:text-[12px]">
+            {`In ${city ? city : ''}, ${
+              country_name ? country_name : ''
+            }`.toUpperCase()}
+          </div>
+        ) : (
+          ''
+        )
+       
+      }
     </div>
-    // <div className="flex">
-    //   <Greetings time={time}></Greetings>
-    //   <div className="flex text-[60px] xl:text-[32px] tracking-[2px] ">
-    //     IN CHENNAI, INDIA
-    //   </div>
-    // </div>
+   
   );
 };
 

@@ -5,18 +5,18 @@ const Info = ({ data1, data2 }) => {
   return (
     <div className="flex flex-col h-full justify-evenly boxxx">
       <div className="flex flex-col gap-y-[20px] msm:gap-y-[10px]">
-        <h1 className="font-semibold text-[#aeaeae] text-[24px] msm:text-[14px]">
+        <h1 className="font-semibold text-[#aeaeae] text-[16px] msm:text-[14px]">
           {data2[0]}
         </h1>
-        <div className="font-semibold text-black text-[50px] mlg:text-[40px] mmd:text-[32px] msm:text-[24px]">
+        <div className="font-semibold text-black text-[40px] mlg:text-[30px] mmd:text-[24px] msm:text-[16px]">
           {data1[0]}
         </div>
       </div>
       <div className="flex flex-col gap-y-[20px] msm:gap-y-[10px]">
-        <h1 className="font-semibold text-[#aeaeae] text-[24px] msm:text-[14px]">
+        <h1 className="font-semibold text-[#aeaeae] text-[16px] msm:text-[14px]">
           {data2[1]}
         </h1>
-        <div className="font-semibold text-black text-[50px] mlg:text-[40px] mmd:text-[32px] msm:text-[24px]">
+        <div className="font-semibold text-black text-[40px] mlg:text-[30px] mmd:text-[24px] msm:text-[16px]">
           {data1[1]}
         </div>
       </div>
