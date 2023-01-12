@@ -1,9 +1,16 @@
 import React from 'react';
 
-const Loader = () => {
+const Loader = ({ isloading }) => {
+  //   console.log(isloading);
   return (
-    <div className="loader bg-[#0e0e0e] flex w-[100vw] h-[100vh] items-center justify-center">
-      <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+    <div
+      style={{
+        transition: 'all 1s ease',
+        transform: `${isloading ? 'translateY(-100%)' : 'translateY(00%)'}`,
+      }}
+      className="loader bg-[#0e0e0e] flex w-[100vw] h-[100vh] items-center justify-center"
+    >
+      <svg className="pl" width="240" height="240" viewBox="0 0 240 240">
         <circle
           class="pl__ring pl__ring--a"
           cx="120"
