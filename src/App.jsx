@@ -26,7 +26,6 @@ function App() {
   }));
 
   const handClick = () => {
-    //console.log(change);
     setChange((prev) => !prev);
   };
   const getip = useCallback(async () => {
@@ -35,26 +34,13 @@ function App() {
     );
     const dt = await response.json();
     setData(dt);
-    // console.log(dt);
   }, []);
 
   useEffect(() => {
     getip();
   }, [getip]);
 
-  // const getip = async () => {
-  //   const response = await fetch(
-  //     'https://api.ipdata.co/?api-key=aaafa88d7d575fee3eb025eac686dc90c1b532edc0e24fadc9ac3619'
-  //   );
-  //   const dt = await response.json();
-  //   setData(dt);
-  //   console.log(dt);
-  // };
-  // useEffect(() => {
-  //   getip();
-  // }, []);
   useEffect(() => {
-    // set({ opacity: 1 });
     const interval = setInterval(() => {
       const currentHour = new Date().getHours();
       if (currentHour >= 6 && currentHour < 17) {
